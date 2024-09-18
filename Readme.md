@@ -3,38 +3,26 @@
 A hotel service - a spring boot application that handles the following functionalities: search, create, update, view, and cancel hotel bookings. 
 Here’s a basic outline for this application:
 
-### Project Structure
+### Directory Breakdown
 
-src/
-└── main/
-├── java/
-│   └── com/
-│       └── example/
-│           └── hotel-service/
-│               ├── HotelServiceApplication.java
-│               ├── controller/
-│               │   ├── BookingController.java
-│               │   └── HotelController.java
-│               ├── entity/
-│               │   ├── Booking.java
-│               │   ├── Hotel.java
-│               │   └── User.java
-│               ├── repository/
-│               │   ├── BookingRepository.java
-│               │   └── HotelRepository.java
-│               └── service/
-│                   ├── BookingService.java
-│                   └── HotelService.java
-└── resources/
-    ├── application.properties
-    └── data.sql
+- **HotelBookingApplication.java**: The main entry point of the application.
+- **controller/**: Contains REST controllers for handling HTTP requests.
+    - **BookingController.java**: Manages booking-related operations.
+    - **HotelController.java**: Manages hotel-related operations.
+- **model/**: Contains the data models for the application.
+    - **Booking.java**: Represents a hotel booking.
+    - **Hotel.java**: Represents a hotel.
+    - **User.java**: Represents a user.
+- **repository/**: Contains interfaces for database interactions.
+    - **BookingRepository.java**: Repository for managing bookings.
+    - **HotelRepository.java**: Repository for managing hotels.
+- **service/**: Contains service classes for business logic.
+    - **BookingService.java**: Business logic for bookings.
+    - **HotelService.java**: Business logic for hotels.
+- **resources/**: Contains configuration and SQL files.
+    - **application.properties**: Application configuration properties.
+    - **data.sql**: SQL script for initializing the database with sample data.
 
-1. **Controller:** Handles HTTP requests.
-2. **Service:** Contains business logic.
-3. **Repository:** Manages data persistence.
-4. **Entity:** Defines database entities.
-5. **Config:** Configures the application.
-6. **HotelServiceApplication:** Starting point of the application
 
 ### Service Setup
 
