@@ -5,11 +5,11 @@ Here’s a basic outline for this application:
 
 ### Directory Breakdown
 
-- **HotelBookingApplication.java**: The main entry point of the application.
+- **HotelServiceApplication.java**: The main entry point of the application.
 - **controller/**: Contains REST controllers for handling HTTP requests.
     - **BookingController.java**: Manages booking-related operations.
     - **HotelController.java**: Manages hotel-related operations.
-- **model/**: Contains the data models for the application.
+- **entity/**: Contains the data models for the application.
     - **Booking.java**: Represents a hotel booking.
     - **Hotel.java**: Represents a hotel.
     - **User.java**: Represents a user.
