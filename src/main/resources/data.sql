@@ -1,41 +1,50 @@
-CREATE DATABASE IF NOT EXISTS hotel_booking_db;
-USE hotel_booking_db;
+CREATE DATABASE IF NOT EXISTS hotel_booking;
+USE hotel_booking;
 
-CREATE TABLE IF NOT EXISTS hotel (
-                       id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                       name VARCHAR(255) NOT NULL,
-                       location VARCHAR(255) NOT NULL,
-                       amenities VARCHAR(255)
+-- drop table users;
+-- drop table hotels;
+-- drop table bookings;
+
+CREATE TABLE IF NOT EXISTS users (
+                       id BIGINT PRIMARY KEY,
+                       name VARCHAR(100),
+                       email VARCHAR(100) UNIQUE,
+                       phone VARCHAR(15)
 );
 
-CREATE TABLE IF NOT EXISTS booking (
-                         id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                         hotel_id BIGINT NOT NULL,
-                         check_in DATE NOT NULL,
-                         check_out DATE NOT NULL,
-                         guests INT NOT NULL,
-                         rooms INT NOT NULL,
-                         personal_details VARCHAR(255),
-                         FOREIGN KEY (hotel_id) REFERENCES hotel(id) ON DELETE CASCADE
+CREATE TABLE IF NOT EXISTS hotels (
+                        id BIGINT PRIMARY KEY,
+                        name VARCHAR(100),
+                        location VARCHAR(100),
+                        available_rooms INT
 );
 
--- inserting sample data into hotel table
-INSERT IGNORE INTO hotel (name, location, amenities)
-VALUES ('Grand Plaza Hotel', 'New York', 'Free WiFi, Pool, Gym');
+CREATE TABLE IF NOT EXISTS bookings (
+                          id BIGINT PRIMARY KEY,
+                          user_id INT REFERENCES users(id),
+                          hotel_id INT REFERENCES hotels(id),
+                          check_in TIMESTAMP,
+                          check_out TIMESTAMP,
+                          status VARCHAR(20) DEFAULT 'CONFIRMED'
+);
 
-INSERT IGNORE INTO hotel (name, location, amenities)
-VALUES ('Seaside Resort', 'Miami', 'Beach Access, Spa, Breakfast Included');
+-- Inserting sample users
+INSERT IGNORE INTO users (name, email, phone) VALUES ('Alice Smith', 'alice@example.com', '555-1234');
+INSERT IGNORE INTO users (name, email, phone) VALUES ('Bob Johnson', 'bob@example.com', '555-5678');
+INSERT IGNORE INTO users (name, email, phone) VALUES ('Charlie Brown', 'charlie@example.com', '555-8765');
+INSERT IGNORE INTO users (name, email, phone) VALUES ('Diana Prince', 'diana@example.com', '555-4321');
+INSERT IGNORE INTO users (name, email, phone) VALUES ('Ethan Hunt', 'ethan@example.com', '555-2468');
 
-INSERT IGNORE INTO hotel (name, location, amenities)
-VALUES ('Mountain Lodge', 'Denver', 'Hiking Trails, Free Parking, Pet Friendly');
+-- Inserting sample hotels
+INSERT IGNORE INTO hotels (name, location, available_rooms) VALUES ('Luxury Inn', 'Los Angeles', 50);
+INSERT IGNORE INTO hotels (name, location, available_rooms) VALUES ('Cozy Cottage', 'Lake Tahoe', 20);
+INSERT IGNORE INTO hotels (name, location, available_rooms) VALUES ('Mountain View Hotel', 'Denver', 30);
+INSERT IGNORE INTO hotels (name, location, available_rooms) VALUES ('Seaside Resort', 'Miami', 100);
+INSERT IGNORE INTO hotels (name, location, available_rooms) VALUES ('Urban Oasis', 'New York', 40);
 
--- inserting sample data into booking table
-INSERT IGNORE INTO booking (hotel_id, check_in, check_out, guests, rooms, personal_details)
-VALUES (1, '2024-10-01', '2024-10-05', 2, 1, 'John Doe, john.doe@example.com, 555-1234');
-
-INSERT IGNORE INTO booking (hotel_id, check_in, check_out, guests, rooms, personal_details)
-VALUES (2, '2024-11-15', '2024-11-20', 4, 2, 'Jane Smith, jane.smith@example.com, 555-5678');
-
-INSERT INTO booking (hotel_id, check_in, check_out, guests, rooms, personal_details)
-VALUES (3, '2024-12-10', '2024-12-15', 1, 1, 'Alice Johnson, alice.johnson@example.com, 555-8765');
-
+-- Inserting sample bookings
+INSERT IGNORE INTO bookings (user_id, hotel_id, check_in, check_out, status) VALUES (1, 1, '2024-10-01 15:00:00', '2024-10-05 11:00:00', 'CONFIRMED');
+INSERT IGNORE INTO bookings (user_id, hotel_id, check_in, check_out, status) VALUES (2, 2, '2024-11-10 15:00:00', '2024-11-15 11:00:00', 'CONFIRMED');
+INSERT IGNORE INTO bookings (user_id, hotel_id, check_in, check_out, status) VALUES (3, 3, '2024-12-20 15:00:00', '2024-12-25 11:00:00', 'CONFIRMED');
+INSERT IGNORE INTO bookings (user_id, hotel_id, check_in, check_out, status) VALUES (4, 4, '2024-09-05 15:00:00', '2024-09-10 11:00:00', 'CONFIRMED');
+INSERT IGNORE INTO bookings (user_id, hotel_id, check_in, check_out, status) VALUES (5, 5, '2024-09-15 15:00:00', '2024-09-20 11:00:00', 'CONFIRMED');

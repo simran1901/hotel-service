@@ -1,35 +1,31 @@
 package com.hrs.hotel_service.entity;
 
+import com.hrs.hotel_service.enums.BOOKING_STATUS;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
+@Data
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-@Entity(name = "booking")
+@Table(name = "bookings")
 public class Booking {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "hotel_id", nullable = false)
-    private Long hotelId;
+    @ManyToOne
+    private User user;
 
-    @Column(name = "check_in", nullable = false)
-    private Date checkIn;
+    @ManyToOne
+    private Hotel hotel;
 
-    @Column(name = "check_out", nullable = false)
-    private Date checkOut;
-
-    private int guests;
-
-    private int rooms;
-
-    @Column(name = "personal_details")
-    private String personalDetails;
+    private LocalDateTime checkIn;
+    private LocalDateTime checkOut;
+    private BOOKING_STATUS status; // e.g., "CONFIRMED", "CANCELLED"
 }

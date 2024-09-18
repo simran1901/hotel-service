@@ -5,6 +5,30 @@ Here’s a basic outline for this application:
 
 ### Project Structure
 
+src/
+└── main/
+├── java/
+│   └── com/
+│       └── example/
+│           └── hotel-service/
+│               ├── HotelServiceApplication.java
+│               ├── controller/
+│               │   ├── BookingController.java
+│               │   └── HotelController.java
+│               ├── entity/
+│               │   ├── Booking.java
+│               │   ├── Hotel.java
+│               │   └── User.java
+│               ├── repository/
+│               │   ├── BookingRepository.java
+│               │   └── HotelRepository.java
+│               └── service/
+│                   ├── BookingService.java
+│                   └── HotelService.java
+└── resources/
+    ├── application.properties
+    └── data.sql
+
 1. **Controller:** Handles HTTP requests.
 2. **Service:** Contains business logic.
 3. **Repository:** Manages data persistence.

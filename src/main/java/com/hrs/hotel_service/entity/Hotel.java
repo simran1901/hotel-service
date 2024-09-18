@@ -5,21 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-@Entity(name = "hotel")
+@Table(name = "hotels")
 public class Hotel {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false)
     private String name;
-
-    @Column(nullable = false)
     private String location;
-
-    private String amenities;
+    private int availableRooms;
 }
